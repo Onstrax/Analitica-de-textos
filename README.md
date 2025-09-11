@@ -31,7 +31,7 @@
 ### Camilo Inoue Rudas
 | Tarea                                                                | Tiempo dedicado |
 |----------------------------------------------------------------------|-----------------|
-| Entrenar y probar un modelo                                          |                 |
+| Entrenar y probar un modelo                                          |     2 horas     |
 | Llenar la plantilla de Canvas de aprendizaje automático              |                 |
 | Justificar que el trabajo y resultados están alineados con la estrategia del negocio |                 |
 | Video de máximo 5 minutos explicando el proyecto y los resultados obtenidos |                 |
