@@ -16,7 +16,7 @@
 | **Líder de proyecto** | Juan Esteban Álvarez García    | 202212030  |
 | **Líder de negocio**  | Camilo Inoue Rudas             | 202225593  |
 | **Líder de datos**    | Juan Esteban Álvarez García    | 202212030  |
-| **Líder de analítica**| Ivan Arturo Avila              |            |
+| **Líder de analítica**| Ivan Arturo Avila              | 202216280  |
 ## **Asignación de tareas**
 ### Juan Esteban Álvarez García
 | Tarea                                                                | Tiempo dedicado |
@@ -39,11 +39,11 @@
 ### Ivan Arturo Avila
 | Tarea                                                                | Tiempo dedicado |
 |----------------------------------------------------------------------|-----------------|
-| Entrenar y probar un modelo                                          |                 |
-| Hacer un pipeline del mejor modelo obtenido                          |                 |
-| Obtener los resultados del modelo, sus métricas y analizarlas        |                 |
-| Justificar el modelo elegido                                         |                 |
-| Análisis de palabras que relacionan textos con ODSs                  |                 |
+| Entrenar y probar 2 modelo s                                         |    2.5 horas    |
+| Hacer un pipeline del mejor modelo obtenido                          |    1 hora       |
+| Obtener los resultados del modelo, sus métricas y analizarlas        |    30 min       |
+| Justificar el modelo elegido                                         |    30 min       |
+| Análisis de palabras que relacionan textos con ODSs                  |    1.5 horas    |
 
 ## **Reuniones y comunicación**
 Luego de discutirlo, se acordó que debido a la poca disponibilidad de franjas de tiempo libre comunes para los 3 integrantes, no se haría ninguna reunión presencial ni virtual sino que la comunicación sería activa y rápida a través de un grupo de WhatsApp.
@@ -55,4 +55,4 @@ Luego de discutirlo, se acordó que debido a la poca disponibilidad de franjas d
 ### Camilo Inoue Rudas
 * 
 ### Ivan Arturo Avila
-* 
+* Utilicé inteligencia artificial como apoyo para identificar modelos más adecuados y eficientes en el procesamiento de textos, lo que permitió ampliar las alternativas de análisis y seleccionar aquellos con mejor rendimiento. En particular, la IA me facilitó la documentación y la estructuración de bloques de código para la implementación de los modelos y la interpretación de los resultados obtenidos. Gracias a este apoyo, se agilizó el desarrollo del proyecto, se mejoró la organización del notebook y se aseguró que cada entregable cumpliera con los requisitos establecidos.
