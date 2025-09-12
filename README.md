@@ -39,7 +39,7 @@
 ### Ivan Arturo Avila
 | Tarea                                                                | Tiempo dedicado |
 |----------------------------------------------------------------------|-----------------|
-| Entrenar y probar un modelo                                          |   2.5 horas     |
+| Entrenar y probar 2 modelos                                          |   2.5 horas     |
 | Hacer un pipeline del mejor modelo obtenido                          |   1 hotra       |
 | Obtener los resultados del modelo, sus métricas y analizarlas        |   30 min        |
 | Justificar el modelo elegido                                         |   30 min        |
