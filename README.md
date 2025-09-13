@@ -26,21 +26,21 @@
 | Explorar y entender los datos                                        |     1 hora      |
 | Procesar y analizar los datos procesados                             |     3 horas     |
 | Crear y documentar wiki de entrega                                   |     2 horas     |
-| Subir los aportes de todos a la wiki                                 |                 |
+| Subir los aportes de todos a la wiki                                 |    30 minutos   |
 
 ### Camilo Inoue Rudas
 | Tarea                                                                | Tiempo dedicado |
 |----------------------------------------------------------------------|-----------------|
 | Entrenar y probar un modelo                                          |     2 horas     |
-| Llenar la plantilla de Canvas de aprendizaje automático              |                 |
-| Justificar que el trabajo y resultados están alineados con la estrategia del negocio |                 |
-| Video de máximo 5 minutos explicando el proyecto y los resultados obtenidos |                 |
+| Llenar la plantilla de Canvas de aprendizaje automático              |     2 horas            |
+| Justificar que el trabajo y resultados están alineados con la estrategia del negocio |   30 minutos              |
+| Video de máximo 5 minutos explicando el proyecto y los resultados obtenidos |   30 minutos              |
 
 ### Ivan Arturo Avila
 | Tarea                                                                | Tiempo dedicado |
 |----------------------------------------------------------------------|-----------------|
 | Entrenar y probar 2 modelos                                          |   2.5 horas     |
-| Hacer un pipeline del mejor modelo obtenido                          |   1 hotra       |
+| Hacer un pipeline del mejor modelo obtenido                          |   1 hora       |
 | Obtener los resultados del modelo, sus métricas y analizarlas        |   30 min        |
 | Justificar el modelo elegido                                         |   30 min        |
 | Análisis de palabras que relacionan textos con ODSs                  |   1.5 hora      |
