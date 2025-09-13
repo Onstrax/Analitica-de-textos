@@ -58,6 +58,6 @@ Considerando el compromiso con el grupo, los resultados logrados, la calidad y c
 ### Juan Esteban Álvarez García:
 * Me apoyé en IA (principalmente Gemini) en la creación de las funciones helpers (de procesamiento y creación de gráficas) y en la implementación del modelo SVM. Fue utilizada como herramienta colaborativa con un enfoque pausado y guiado para mejorar mi entendimiento sobre lo que estaba haciendo. La estructuración del proyecto, entendimiento e interpretación de datos y toma de decisiones fue mía. La IA me ayudó con la implementación de los fragmentos de código más técnicos.
 ### Camilo Inoue Rudas
-* 
+* Utilicé IA para mejorar la redacción de las respuestas del Canvas, para explorar los posibles modelos que podía usar y elegir el más conveninente, y por último para la implementación en código del modelo elegido.
 ### Ivan Arturo Avila
 * Utilicé inteligencia artificial como apoyo para identificar modelos más adecuados y eficientes en el procesamiento de textos, lo que permitió ampliar las alternativas de análisis y seleccionar aquellos con mejor rendimiento. En particular, la IA me facilitó la documentación y la estructuración de bloques de código para la implementación de los modelos y la interpretación de los resultados obtenidos. Gracias a este apoyo, se agilizó el desarrollo del proyecto, se mejoró la organización del notebook y se aseguró que cada entregable cumpliera con los requisitos establecidos.
