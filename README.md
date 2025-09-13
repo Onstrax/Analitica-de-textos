@@ -6,8 +6,8 @@
   * Exploración de datos
   * Procesamiento de datos
   * Construcción de modelos
+  * Contrucción del pipeline
   * Análisis de resultados
-  * Justificación de negocio
 * Datos de prueba con predicciones
 * Video de 5 minutos
 ## **Asignación de roles**
