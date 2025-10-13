@@ -84,6 +84,25 @@ Considerando el compromiso, la calidad de las contribuciones, el cumplimiento de
 ### **Iván Arturo Ávila**  
 *  
 
+## **Recursos informáticos requeridos**
+
+Para el desarrollo y despliegue de la aplicación analítica, se requiere un conjunto de recursos informáticos que garanticen el correcto funcionamiento del modelo y su disponibilidad para el usuario final. En primer lugar, para el **entrenamiento y reentrenamiento del modelo**, basta con un entorno de cómputo con procesador de al menos cuatro núcleos (por ejemplo, Intel i5 o Ryzen 5) y una memoria RAM mínima de 8 GB. Esto se debe a que el modelo se construyó utilizando la librería *scikit-learn*, la cual está optimizada para ejecutar operaciones sobre CPU sin necesidad de aceleración por GPU. En caso de manejar volúmenes de datos más grandes o requerir procesos más intensivos durante la aumentación con *prompting*, se puede optar por utilizar entornos con GPU, como los ofrecidos por Google Colab o Kaggle.
+
+Para la **ejecución y predicción**, los requerimientos son considerablemente menores. Un entorno con 2 GB de RAM y un procesador estándar es suficiente para ejecutar el modelo, dado que las predicciones son realizadas en tiempo casi real y los modelos persistidos en formato `.pkl` o `.joblib` son ligeros y eficientes. A nivel de software, se requiere tener instalado *Python 3.10+* y las librerías *FastAPI*, *Uvicorn*, *scikit-learn*, *pandas*, *numpy* y *joblib*. 
+
+En cuanto a la **persistencia del modelo**, este se almacena como un archivo binario dentro del repositorio o en un servidor local. Para ambientes de producción, se recomienda guardar el archivo del modelo en un sistema de almacenamiento en la nube, como AWS S3 o Google Cloud Storage, con un sistema simple de versionamiento (por ejemplo, `modelo_v1.joblib`, `modelo_v2.joblib`) que permita mantener trazabilidad entre iteraciones. 
+
+Finalmente, para el **despliegue de la aplicación**, se utiliza el framework *FastAPI*, que permite exponer dos endpoints principales: uno para realizar predicciones y otro para ejecutar procesos de reentrenamiento. La aplicación puede ejecutarse localmente mediante el comando `uvicorn main:app --reload`, o desplegarse en servicios gratuitos como Render, Railway o HuggingFace Spaces. En caso de optar por un despliegue en la nube, los requerimientos mínimos del servidor son 1 CPU virtual, 512 MB de RAM y 1 GB de almacenamiento. Con estas configuraciones, el sistema puede garantizar un funcionamiento eficiente, estable y replicable.
+
+
+## **Riesgos para el usuario final**
+
+El uso de la aplicación analítica conlleva ciertos riesgos que pueden clasificarse en tres categorías principales: técnicos, éticos y operacionales. En cuanto a los **riesgos técnicos**, uno de los principales es la posibilidad de que el modelo genere predicciones incorrectas o sesgadas, especialmente si los datos de entrenamiento presentan desbalance o representaciones limitadas de las distintas clases. Esto podría llevar a clasificaciones erróneas respecto a los Objetivos de Desarrollo Sostenible (ODS) a los que se asocian las opiniones. Para mitigar este riesgo, se implementan estrategias de aumentación de datos y validación cruzada que mejoran la capacidad de generalización del modelo. Otro riesgo técnico es la posible interrupción del servicio debido a errores en el servidor o en la API; para prevenirlo, se incluyen mecanismos de validación de entradas y registro de logs que permiten identificar y corregir fallos de manera oportuna.
+
+Desde el punto de vista **ético**, un riesgo importante es la malinterpretación de los resultados. El usuario podría asumir que la clasificación generada por el modelo es una verdad absoluta, cuando en realidad se trata de una predicción probabilística basada en patrones del conjunto de datos. Por esta razón, la aplicación muestra la probabilidad asociada a cada predicción y recomienda interpretar los resultados como una herramienta de apoyo, no como una decisión definitiva. Además, se debe tener precaución con la **privacidad de los datos** ingresados por los usuarios, ya que los textos pueden contener información sensible. Para mitigar este riesgo, se recomienda anonimizar o eliminar cualquier referencia personal antes de almacenarlos o utilizarlos para reentrenar el modelo.
+
+Finalmente, en términos **operacionales**, existe el riesgo de que la organización o el usuario final desarrollen una dependencia excesiva del modelo, utilizando sus resultados sin una revisión humana crítica. Esto podría derivar en decisiones incorrectas o parciales. Para evitarlo, se promueve un enfoque de *human-in-the-loop*, donde la aplicación actúa como una herramienta de apoyo al análisis, y no como un sustituto del criterio profesional. En conjunto, estas medidas buscan garantizar que el uso de la aplicación sea seguro, ético y confiable, tanto desde la perspectiva técnica como desde la social.
+
 
 
 # Proyecto de Clasificación de ODS con API REST
@@ -134,6 +153,7 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
 
 
