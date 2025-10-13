@@ -1,0 +1,4 @@
+# **Justificación de negocio**
+Nuestro trabajo se encuentra alineado con la estrategia de negocio del UNFPA porque ambos buscan fortalecer la planificación y el seguimiento de políticas públicas con base en evidencia real. En pro del negocio dado, nuestro proyecto contribuye en la optimización del tiempo y de los recursos en el análisis de la información, ya que reduce la dependencia de clasificación manual, a fortalecer la participación ciudadana, garantizando que se van a escuchar las opiniones de la población y que dichas opiniones serán tomadas en cuenta en las decisiones, y a incrementar la transparencia y legitimidad de las decisiones que se tomen, ya que estas se basarán en datos verificables.
+
+En conclusión, nuestro proyecto no solo resuelve el problema técnico del análisis de textos, sino que es un habilitador estratégico para el cumplimiento de la Agenda 2030, conectando las expresiones de los ciudadanos con lo que las instituciones deben ejecutar.
