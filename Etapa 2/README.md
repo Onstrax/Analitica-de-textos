@@ -47,11 +47,11 @@
 ### **Iván Arturo Ávila**  
 | **Tarea** | **Tiempo dedicado** |
 |------------|--------------------|
-| Desarrollar los endpoints principales del backend (predicción y reentrenamiento) |  |
-| Configurar Docker para la ejecución del proyecto |  |
-| Implementar el pipeline automatizado de preparación, entrenamiento y persistencia del modelo |  |
-| Asegurar el manejo de logs y validación de entradas en la API |  |
-| Pruebas de funcionamiento y corrección de errores en el backend |  |
+| Desarrollar los endpoints principales del backend (predicción y reentrenamiento) | 1 hora |
+| Configurar Docker para la ejecución del proyecto | 30 min |
+| Implementar el pipeline automatizado de preparación, entrenamiento y persistencia del modelo | 2 horas  |
+| Asegurar el manejo de logs y validación de entradas en la API | 30 min |
+| Pruebas de funcionamiento y corrección de errores en el backend | 1 hora |
 
 ---
 
@@ -82,7 +82,7 @@ Considerando el compromiso, la calidad de las contribuciones, el cumplimiento de
 *  
 
 ### **Iván Arturo Ávila**  
-*  
+*  utilicé inteligencia artificial generativa para comprender el flujo del pipeline y los distintos tipos de re-entrenamiento, así como para entender la gestión de archivos (la conversión de XLSX/CSV a JSON) y su manejo en los endpoints de la API.
 
 ## **Recursos informáticos requeridos**
 
@@ -107,7 +107,37 @@ Finalmente, en términos **operacionales**, existe el riesgo de que la organizac
 
 # Proyecto de Clasificación de ODS con API REST
 
-Este proyecto implementa un pipeline de Machine Learning para clasificar textos según los Objetivos de Desarrollo Sostenible (ODS). La solución está desplegada como una API REST utilizando FastAPI y Docker.
+La API incluye un endpoint (/retrain) que permite actualizar el modelo de clasificación con nuevos datos etiquetados. A continuación, se describen las estrategias de re-entrenamiento investigadas para este proyecto.
+
+## 1. Re-entrenamiento Completo
+
+  Combina los datos de entrenamiento originales con el nuevo lote de datos y entrena un modelo desde cero con todo el conjunto.
+
+  Ventaja: Produce el modelo más robusto, ya que aprende de toda la información histórica y nueva.
+
+  Desventaja: Es el método más lento y costoso en términos de recursos computacionales, especialmente con grandes volúmenes de datos.
+
+## 2. Re-entrenamiento con Nuevos Lotes
+
+  Entrena un modelo completamente nuevo utilizando únicamente el lote de datos más reciente. Este nuevo modelo reemplaza por completo a la versión anterior.
+
+  Ventaja: Es un método rápido que permite al modelo adaptarse ágilmente a las tendencias más recientes en los datos.
+
+  Desventaja: El modelo puede "olvidar" patrones aprendidos de los datos históricos si no están presentes en el nuevo lote.
+
+## 3. Aprendizaje Incremental (Online Learning)
+
+   Actualiza el modelo existente con los nuevos datos sin necesidad de re-entrenar desde cero. Se logra con algoritmos que soportan el método partial_fit.
+
+  Ventaja: Es extremadamente rápido y eficiente, ideal para sistemas que reciben datos en tiempo real.
+
+  Desventaja: No todos los modelos son compatibles (incluyendo LinearSVC). La calidad del modelo puede degradarse con el tiempo.
+
+## Estrategia Implementada
+
+Para este proyecto, se implementó la estrategia de Re-entrenamiento con Nuevos Lotes.
+
+El endpoint /retrain recibe un nuevo conjunto de datos, entrena un modelo desde cero solo con esa información (aplicando un balanceo de clases por oversampling) y reemplaza el archivo .joblib anterior. Esta decisión ofrece el mejor balance entre agilidad para adaptarse a nuevos datos y eficiencia en el uso de recursos.
 
 ## Prerrequisitos
 
@@ -153,6 +183,7 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
 
 
