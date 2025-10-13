@@ -154,7 +154,7 @@ git clone https://github.com/Onstrax/Analitica-de-textos.git
 cd Analitica-de-textos
 ```
 ```bash
-python -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -183,6 +183,7 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
 
 
