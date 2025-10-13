@@ -4,6 +4,7 @@ import io
 import zipfile
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, File, UploadFile, Form
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 from typing import List, Dict, Any
@@ -19,6 +20,14 @@ app = FastAPI(
     title="API de Clasificación de ODS",
     description="Sube archivos, clasifica textos, re-entrena el modelo y descarga los resultados.",
     version="2.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ← Permite TODOS los orígenes
+    allow_credentials=True,
+    allow_methods=["*"],   # ← Permite todos los métodos
+    allow_headers=["*"],   # ← Permite todos los headers
 )
 #balanceo
 
