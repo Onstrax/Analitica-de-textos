@@ -13,8 +13,8 @@ Este proyecto implementa un pipeline de Machine Learning para clasificar textos 
 ## 1. Clonar el Repositorio
 
 ```bash
-git clone <URL_DE_TU_REPOSITORIO>
-cd <NOMBRE_DE_LA_CARPETA>
+git clone https://github.com/Onstrax/Analitica-de-textos.git
+cd Analitica-de-textos
 ```
 ```bash
 python -m venv .venv
@@ -46,4 +46,5 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
