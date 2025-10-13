@@ -26,6 +26,7 @@ pip install -r requirements.txt
 
 Generar el archivo del pipeline:
 ```bash
+cd etapa2/back-end
 python build_pipeline.py
 
 ```
@@ -45,3 +46,4 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
