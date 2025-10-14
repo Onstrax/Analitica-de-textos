@@ -79,7 +79,7 @@ Considerando el compromiso, la calidad de las contribuciones, el cumplimiento de
 *  
 
 ### **Camilo Inoue Rudas**  
-*  
+*  Utilicé IA generativa para la revisión de sintáxis y organización de las ideas y respuestas propuestas en este archivo. Además, se usó para solucionar problemas de ejecución de la aplicación, tales como edición de variables de entorno.
 
 ### **Iván Arturo Ávila**  
 *  utilicé inteligencia artificial generativa para comprender el flujo del pipeline y los distintos tipos de re-entrenamiento, así como para entender la gestión de archivos (la conversión de XLSX/CSV a JSON) y su manejo en los endpoints de la API.
@@ -183,6 +183,7 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
 
 
