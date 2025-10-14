@@ -1,6 +1,10 @@
 # *Analitica-de-textos*  
 # **Segunda entrega: Automatización y despliegue de modelos**  
 
+# Link video de demo:
+
+https://www.veed.io/view/8dcb6824-46d6-495d-a79f-0db5d5ad48ad?panel=share
+
 ## **Entregables**  
 * Aumentación de datos y reentrenamiento del modelo  
 * Automatización del proceso (pipeline, persistencia y API REST)  
@@ -183,6 +187,7 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
 
 
