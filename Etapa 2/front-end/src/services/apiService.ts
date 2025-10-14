@@ -85,8 +85,8 @@ export async function clasificarDatos(files: File[]): Promise<{name: string, dat
  */
 export async function reentrenarModelo(
   files: File[], 
-  textColumn: string = 'textos',
-  labelColumn: string = 'labels'
+  textColumn: string,
+  labelColumn: string
 ): Promise<{
   precision: number;
   recall: number;

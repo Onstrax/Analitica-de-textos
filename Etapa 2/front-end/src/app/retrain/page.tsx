@@ -105,7 +105,7 @@ export default function RetrainPage() {
     setIsProcessing(true);
     
     try {
-      const nuevasMetricas = await reentrenarModelo(files, variableObjetivo);
+      const nuevasMetricas = await reentrenarModelo(files, 'textos', variableObjetivo)
       setMetricas(nuevasMetricas);
       
       // Limpiar formulario
