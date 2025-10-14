@@ -91,23 +91,44 @@ export async function reentrenarModelo(
   try {
     const formData = new FormData();
     
-    // Añadir todos los archivos
+    // Añadir todos los archivos - IMPORTANTE: usar 'files' como key
     files.forEach((file) => {
       formData.append('files', file);
     });
     
-    // Añadir los nombres de las columnas
+    // Añadir los nombres de las columnas como strings
+    // Usar 'text_column' y 'label_column' exactamente como espera FastAPI
     formData.append('text_column', textColumn);
     formData.append('label_column', labelColumn);
+
+    console.log('Enviando solicitud de re-entrenamiento:', {
+      numArchivos: files.length,
+      textColumn,
+      labelColumn,
+      files: files.map(f => f.name)
+    });
 
     const response = await fetch(`${API_BASE_URL}/retrain`, {
       method: 'POST',
       body: formData,
+      // NO establecer Content-Type manualmente - el navegador lo hará automáticamente con el boundary correcto
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Error desconocido' }));
-      throw new Error(errorData.detail || `Error ${response.status}: ${response.statusText}`);
+      // Intentar obtener más detalles del error
+      const errorText = await response.text();
+      console.error('Error response:', errorText);
+      
+      let errorDetail = `Error ${response.status}: ${response.statusText}`;
+      try {
+        const errorData = JSON.parse(errorText);
+        errorDetail = errorData.detail || errorDetail;
+      } catch {
+        // Si no es JSON, usar el texto plano
+        errorDetail = errorText || errorDetail;
+      }
+      
+      throw new Error(errorDetail);
     }
 
     const data: ModelMetrics = await response.json();
@@ -205,25 +226,3 @@ export async function verificarEstadoAPI(): Promise<boolean> {
     return false;
   }
 }
-
-/**
- * EJEMPLO DE USO:
- * 
- * // Clasificar archivos
- * const archivosClasificados = await clasificarDatos(files);
- * archivosClasificados.forEach(archivo => {
- *   // Descargar cada archivo
- *   const url = URL.createObjectURL(archivo.data);
- *   const a = document.createElement('a');
- *   a.href = url;
- *   a.download = archivo.name;
- *   a.click();
- * });
- * 
- * // Re-entrenar modelo
- * const metricas = await reentrenarModelo(files, 'textos', 'labels');
- * const metricasParseadas = parsearMetricas(metricas);
- * console.log('Accuracy:', metricasParseadas.accuracy);
- * console.log('F1-Score:', metricasParseadas.f1Score);
- * console.log('Métricas por clase:', metricasParseadas.porClase);
- */
