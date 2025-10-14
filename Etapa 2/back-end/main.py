@@ -15,6 +15,7 @@ from sklearn.utils import resample
 from custom_transformers import TextProcessor, WordCounter
 
 MODEL_PATH = "classification_pipeline.joblib"
+METRICS_PATH = "model_metrics.joblib"  # Archivo para guardar las métricas
 
 app = FastAPI(
     title="API de Clasificación de ODS",
@@ -60,10 +61,11 @@ class MetricsResponse(BaseModel):
     metrics: Dict[str, Any]
 
 pipeline = None
+current_metrics = None  # Variable global para almacenar las métricas actuales
 
 @app.on_event("startup")
 def load_model():
-    global pipeline
+    global pipeline, current_metrics
     try:
         if Path(MODEL_PATH).exists():
             pipeline = joblib.load(MODEL_PATH)
@@ -71,11 +73,54 @@ def load_model():
         else:
             print(f"Advertencia: No se encontró el archivo del modelo en '{MODEL_PATH}'.")
             pipeline = None
+            
+        # Cargar métricas si existen
+        if Path(METRICS_PATH).exists():
+            current_metrics = joblib.load(METRICS_PATH)
+            print(f"Métricas cargadas exitosamente desde '{METRICS_PATH}'.")
+        else:
+            print(f"Advertencia: No se encontraron métricas guardadas en '{METRICS_PATH}'.")
+            current_metrics = None
     except Exception as e:
         print(f" Error crítico al cargar el modelo: {e}")
         pipeline = None
+        current_metrics = None
 
 #endpoints
+
+@app.get("/metrics", response_model=MetricsResponse)
+async def get_metrics():
+    """
+    Retorna las métricas del modelo actual.
+    Si no hay métricas disponibles, retorna un mensaje informativo.
+    """
+    global current_metrics
+    
+    if current_metrics is None:
+        # Si no hay métricas guardadas, retornar métricas por defecto
+        return MetricsResponse(
+            message="No hay métricas disponibles. El modelo aún no ha sido entrenado o re-entrenado.",
+            metrics={
+                "accuracy": 0.0,
+                "macro avg": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 0.0
+                },
+                "weighted avg": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 0.0
+                }
+            }
+        )
+    
+    return MetricsResponse(
+        message="Métricas del modelo actual.",
+        metrics=current_metrics
+    )
 
 @app.post("/predict_files")
 async def predict_files(files: List[UploadFile] = File(...)):
@@ -113,7 +158,7 @@ async def retrain(
     label_column: str = Form("labels")
 ):
   
-    global pipeline
+    global pipeline, current_metrics
     if pipeline is None:
         raise HTTPException(status_code=503, detail="No hay un modelo base para re-entrenar.")
 
@@ -157,9 +202,15 @@ async def retrain(
         y_pred = new_pipeline.predict(X_test)
         report = classification_report(y_test, y_pred, output_dict=True)
 
+        # Guardar el modelo y las métricas
         joblib.dump(new_pipeline, MODEL_PATH)
+        joblib.dump(report, METRICS_PATH)
+        
         pipeline = new_pipeline
+        current_metrics = report
+        
         print(f"Modelo re-entrenado y guardado en '{MODEL_PATH}'.")
+        print(f"Métricas guardadas en '{METRICS_PATH}'.")
 
         return MetricsResponse(
             message="Modelo re-entrenado y actualizado con éxito (datos balanceados).",

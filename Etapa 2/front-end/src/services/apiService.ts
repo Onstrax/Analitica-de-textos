@@ -161,10 +161,7 @@ export async function reentrenarModelo(
 }
 
 /**
- * Servicio para obtener métricas del modelo actual
- * NOTA: Tu API actual no tiene un endpoint específico para esto,
- * las métricas se devuelven después del re-entrenamiento.
- * Esta función es un placeholder para mantener la interfaz consistente.
+ * Servicio para obtener métricas del modelo actual desde el endpoint /metrics
  */
 export async function obtenerMetricas(): Promise<{
   precision: number;
@@ -172,16 +169,40 @@ export async function obtenerMetricas(): Promise<{
   f1Score: number;
   accuracy: number;
 }> {
-  // Como tu API no tiene endpoint /metrics, devolvemos valores por defecto
-  // Considera agregar un endpoint GET /metrics en tu FastAPI si lo necesitas
-  console.warn('Endpoint /metrics no disponible. Devolviendo métricas por defecto.');
-  
-  return {
-    precision: 0,
-    recall: 0,
-    f1Score: 0,
-    accuracy: 0
-  };
+  try {
+    const response = await fetch(`${API_BASE_URL}/metrics`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      console.error('Error al obtener métricas:', response.statusText);
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
+    const data: ModelMetrics = await response.json();
+    
+    // Extraer y formatear las métricas desde "macro avg"
+    const metricas = {
+      precision: data.metrics['macro avg'].precision,
+      recall: data.metrics['macro avg'].recall,
+      f1Score: data.metrics['macro avg']['f1-score'],
+      accuracy: data.metrics.accuracy
+    };
+    
+    console.log('Métricas obtenidas del servidor:', metricas);
+    
+    return metricas;
+    
+  } catch (error) {
+    console.error('Error al obtener métricas:', error);
+    // En caso de error, devolver métricas vacías
+    return {
+      precision: 0,
+      recall: 0,
+      f1Score: 0,
+      accuracy: 0
+    };
+  }
 }
 
 /**
