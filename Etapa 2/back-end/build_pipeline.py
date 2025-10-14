@@ -48,14 +48,26 @@ print("Entrenando el pipeline...")
 final_pipeline.fit(X_train, y_train)
 print("Entrenamiento completado.")
 
-# evaulacion modelo
+# evaluacion modelo
 print("\nEvaluando el modelo en el conjunto de prueba...")
 y_pred = final_pipeline.predict(X_test)
-print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.4f}")
 print("\nReporte de Clasificación:")
+report_dict = classification_report(y_test, y_pred, output_dict=True)
 print(classification_report(y_test, y_pred))
 
 #exportar pipeline
 print("\nExportando el pipeline a 'classification_pipeline.joblib'...")
 joblib.dump(final_pipeline, 'classification_pipeline.joblib')
-print("Pipeline exportado exitosamente. ")
+print("Pipeline exportado exitosamente.")
+
+# Exportar métricas
+print("\nExportando las métricas a 'model_metrics.joblib'...")
+joblib.dump(report_dict, 'model_metrics.joblib')
+print("Métricas exportadas exitosamente.")
+print(f"\nMétricas guardadas:")
+print(f"  - Accuracy: {report_dict['accuracy']:.4f}")
+print(f"  - Precision (macro avg): {report_dict['macro avg']['precision']:.4f}")
+print(f"  - Recall (macro avg): {report_dict['macro avg']['recall']:.4f}")
+print(f"  - F1-score (macro avg): {report_dict['macro avg']['f1-score']:.4f}")
