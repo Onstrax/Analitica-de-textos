@@ -36,11 +36,11 @@
 ### **Camilo Inoue Rudas**  
 | **Tarea** | **Tiempo dedicado** |
 |------------|--------------------|
-| Elaborar la documentación técnica y argumentativa del proyecto (etapa 2) |  |
-| Redactar las respuestas de la sección 3 (recursos informáticos y riesgos de uso) |  |
-| Describir el rol del usuario y la conexión con el proceso de negocio |  |
-| Revisar la coherencia del documento y preparar el texto para la wiki |  |
-| Colaborar en la preparación del video explicativo de la aplicación |  |
+| Elaborar la documentación técnica y argumentativa del proyecto (etapa 2) | 1 hora |
+| Redactar las respuestas de la sección 3 (recursos informáticos y riesgos de uso) | 1 hora |
+| Describir el rol del usuario y la conexión con el proceso de negocio | .5 horas |
+| Revisar la coherencia del documento y preparar el texto para la wiki | .5 horas |
+| Colaborar en la preparación del video explicativo de la aplicación | 1 hora |
 
 ---
 
@@ -183,6 +183,7 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
 
 
