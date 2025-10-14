@@ -25,11 +25,11 @@
 ### **Juan Esteban Álvarez García**  
 | **Tarea** | **Tiempo dedicado** |
 |------------|--------------------|
-| Desarrollar la interfaz web de la aplicación utilizando FastAPI Templates / HTML y CSS |  |
-| Implementar la comunicación del frontend con los endpoints del backend |  |
-| Diseñar la estructura visual y navegación básica del sitio |  |
-| Realizar pruebas de integración entre frontend y backend |  |
-| Coordinar entregables del grupo y subir la versión final al repositorio |  |
+| Desarrollar la interfaz web de la aplicación utilizando Next.js | 4 horas |
+| Implementar la comunicación del frontend con los endpoints del backend | 2 horas |
+| Diseñar la estructura visual y navegación básica del sitio | 1 hora |
+| Coordinar entregables del grupo y subir la versión final al repositorio | 0.5 horas |
+| Implementar Aumentación de datos y comparar resultados | 2 horas |
 
 ---
 
@@ -76,7 +76,7 @@ Considerando el compromiso, la calidad de las contribuciones, el cumplimiento de
 ## **Uso de Inteligencia Artificial**  
 
 ### **Juan Esteban Álvarez García**  
-*  
+*  Utilicé IA generativa para la función de Aumetación de datos y para la implementación en Next del frontend basado en un diseño que hice a mano.
 
 ### **Camilo Inoue Rudas**  
 *  Utilicé IA generativa para la revisión de sintáxis y organización de las ideas y respuestas propuestas en este archivo. Además, se usó para solucionar problemas de ejecución de la aplicación, tales como edición de variables de entorno.
@@ -183,6 +183,7 @@ Iniciar API
 ```bash
 docker run -d -p 8000:8000 --name ods-api-container ods-classifier-api
 ```
+
 
 
 
