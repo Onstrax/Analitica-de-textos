@@ -10,13 +10,13 @@ export interface ModelMetrics {
   message: string;
   metrics: {
     accuracy: number;
-    macro_avg?: {
+    'macro avg': {
       precision: number;
       recall: number;
       'f1-score': number;
       support: number;
     };
-    weighted_avg?: {
+    'weighted avg'?: {
       precision: number;
       recall: number;
       'f1-score': number;
@@ -87,7 +87,12 @@ export async function reentrenarModelo(
   files: File[], 
   textColumn: string = 'textos',
   labelColumn: string = 'labels'
-): Promise<ModelMetrics> {
+): Promise<{
+  precision: number;
+  recall: number;
+  f1Score: number;
+  accuracy: number;
+}> {
   try {
     const formData = new FormData();
     
@@ -133,13 +138,19 @@ export async function reentrenarModelo(
 
     const data: ModelMetrics = await response.json();
     
-    console.log('Modelo re-entrenado exitosamente:', {
-      mensaje: data.message,
-      accuracy: data.metrics.accuracy,
-      numArchivos: files.length
-    });
+    console.log('Modelo re-entrenado exitosamente:', data);
     
-    return data;
+    // Extraer y formatear las métricas desde "macro avg"
+    const metricas = {
+      precision: data.metrics['macro avg'].precision,
+      recall: data.metrics['macro avg'].recall,
+      f1Score: data.metrics['macro avg']['f1-score'],
+      accuracy: data.metrics.accuracy
+    };
+    
+    console.log('Métricas procesadas:', metricas);
+    
+    return metricas;
     
   } catch (error) {
     console.error('Error al re-entrenar modelo:', error);
@@ -186,14 +197,14 @@ export function parsearMetricas(metricsData: ModelMetrics): {
 } {
   const { metrics } = metricsData;
   
-  // Usar weighted_avg si está disponible, sino macro_avg
-  const avg = metrics.weighted_avg || metrics.macro_avg;
+  // Usar macro avg
+  const avg = metrics['macro avg'];
   
   const resultado = {
-    precision: avg?.precision || 0,
-    recall: avg?.recall || 0,
-    f1Score: avg?.['f1-score'] || 0,
-    accuracy: metrics.accuracy || 0,
+    precision: avg.precision,
+    recall: avg.recall,
+    f1Score: avg['f1-score'],
+    accuracy: metrics.accuracy,
     porClase: {} as {[key: string]: {precision: number, recall: number, f1Score: number, support: number}}
   };
   
